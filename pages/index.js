@@ -22,7 +22,7 @@ export default function Home() {
                 />
                 <link rel='icon' href='/favicon.ico' />
             </Head>
-            <NavBar username='Maggy' />
+            <NavBar username='maggyedozie@gmail.com' />
             <Banner
                 title='Clifford the red dog'
                 subTitle='a very cute dog'
