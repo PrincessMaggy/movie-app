@@ -29,7 +29,7 @@ const NavBar = (props) => {
             <div className={styles.wrapper}>
                 <a className={styles.logoLink} href='/'>
                     <div
-                        className='styles.logoWrapper'
+                        className={styles.logoWrapper}
                         style={{color: 'rbg(220,38,38)', fontSize: '2rem'}}
                     >
                         WATCHFLIX
