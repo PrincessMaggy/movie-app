@@ -4,6 +4,7 @@ import styles from '@/styles/Home.module.css';
 //components
 import NavBar from '@/components/navbar/navbar';
 import Banner from '@/components/banner/banner';
+import Card from '@/components/card/card';
 
 const inter = Inter({subsets: ['latin']});
 
@@ -28,6 +29,10 @@ export default function Home() {
                 subTitle='a very cute dog'
                 imgUrl='/static/clifford.webp'
             />
+            <Card imgUrl='/static/clifford.webp' size='large' />
+
+            <Card imgUrl='/static/clifford.webp' size='medium' />
+            <Card imgUrl='/static/clifford.webp' size='small' />
         </>
     );
 }
