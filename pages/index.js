@@ -6,10 +6,17 @@ import NavBar from '@/components/navbar/navbar';
 import Banner from '@/components/banner/banner';
 import Card from '@/components/card/card';
 import SectionCards from '@/components/card/sectionCards';
+import {getVideos} from '@/lib/videos';
 
 const inter = Inter({subsets: ['latin']});
 
-export default function Home() {
+export async function getServerSideProps() {
+    const disneyVideos = getVideos();
+
+    return {props: {disneyVideos}};
+}
+
+export default function Home({disneyVideos}) {
     return (
         <>
             <Head>
@@ -31,7 +38,16 @@ export default function Home() {
                 imgUrl='/static/clifford.webp'
             />
             <div className={styles.sectionWrapper}>
-                <SectionCards title='Disney' />
+                <SectionCards
+                    title='Disney'
+                    videos={disneyVideos}
+                    size='large'
+                />
+                <SectionCards
+                    title='Productivity'
+                    videos={disneyVideos}
+                    size='medium'
+                />
             </div>
         </>
     );
