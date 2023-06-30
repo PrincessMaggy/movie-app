@@ -17,7 +17,8 @@ This is a cloned version of netflix application.
 ![screenshot](./screenshot.JPG)
 
 ### Links
-
+- Youtube API dashboard :[https://console.cloud.google.com/apis/dashboard?project=watchflix-391307]
+https://developers.google.com/youtube/v3/docs/search/list?apix_params=%7B%22part%22%3A%5B%22snippet%22%5D%2C%22q%22%3A%22productivity%22%7D
 - Solution URL: [https://github.com/PrincessMaggy/movie-app.git]
 - Live Site URL: [https://princessmaggy.github.io/movie-app]
 
