@@ -7,8 +7,8 @@ import Banner from '@/components/banner/banner';
 import Card from '@/components/card/card';
 import SectionCards from '@/components/card/sectionCards';
 import {getVideos, getPopularVideos} from '@/lib/videos';
-
-const inter = Inter({subsets: ['latin']});
+import {magic} from '../lib/magicClient';
+// const inter = Inter({subsets: ['latin']});
 
 export async function getServerSideProps() {
     const disneyVideos = await getVideos('disney trailer');
@@ -32,7 +32,7 @@ export default function Home({
     travelVideos,
     productivityVideos,
 }) {
-    console.log({disneyVideos});
+    console.log({magic});
 
     return (
         <>

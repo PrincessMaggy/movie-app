@@ -1,9 +1,27 @@
 import Head from 'next/head';
+import {useState} from 'react';
+import {useRouter} from 'next/router';
 import styles from '../styles/Login.module.css';
 
 const Login = () => {
+    const router = useRouter();
+    const [userMsg, setUserMsg] = useState('');
+    const [email, setEmail] = useState('');
+    const handleOnChangeEmail = (e) => {
+        setEmail(e.target.value);
+        console.log(email);
+        setUserMsg('');
+    };
     const handleLoginWithEmail = (e) => {
         e.preventDefault();
+        console.log(email);
+
+        if (email) {
+            setUserMsg('');
+            router.push('/');
+        } else {
+            setUserMsg('Enter a valid email address');
+        }
     };
     return (
         <div className={styles.container}>
@@ -28,9 +46,11 @@ const Login = () => {
                     <input
                         className={styles.emailInput}
                         type='text'
+                        value={email}
                         placeholder='Email address'
+                        onChange={handleOnChangeEmail}
                     />
-                    <p className={styles.userMsg}></p>
+                    <p className={styles.userMsg}>{userMsg}</p>
                     <button
                         className={styles.loginBtn}
                         onClick={handleLoginWithEmail}
