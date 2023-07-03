@@ -36,6 +36,20 @@ const NavBar = () => {
         setShowDropdown(!showDropdown);
     };
 
+    const signOutUser = async (e) => {
+        e.preventDefault();
+        if (username === '') {
+            router.push('/login');
+        } else {
+            try {
+                await magic.user.logout();
+                router.push('/login');
+            } catch (e) {
+                console.log(e, 'error logging user out');
+            }
+        }
+    };
+
     return (
         <div className={styles.container}>
             <div className={styles.wrapper}>
@@ -79,8 +93,11 @@ const NavBar = () => {
                                     <Link
                                         href='/login'
                                         className={styles.linkName}
+                                        onClick={signOutUser}
                                     >
-                                        Sign Out
+                                        {username === ''
+                                            ? 'Log In'
+                                            : 'Sign Out'}
                                     </Link>
                                     <div className={styles.lineWrapper}></div>
                                 </div>
