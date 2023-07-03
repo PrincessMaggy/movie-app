@@ -5,8 +5,8 @@ import cls from 'classnames';
 import {getYoutubeVideoById} from '@/lib/videos';
 Modal.setAppElement('#__next');
 
-export async function getStaticProps() {
-    const videoId = 'mYfJxlgR2jw';
+export async function getStaticProps(context) {
+    const videoId = context.params.videoId;
     const videoArr = await getYoutubeVideoById(videoId);
 
     return {
@@ -35,7 +35,7 @@ const Video = ({video}) => {
         publishTime,
         description,
         channelTitle,
-        statistics: {viewCount},
+        statistics: {viewCount} = {viewCount: 0},
     } = video;
     return (
         <div className={styles.container}>
