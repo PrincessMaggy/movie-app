@@ -2,21 +2,16 @@ import {useRouter} from 'next/router';
 import styles from '../../styles/Video.module.css';
 import Modal from 'react-modal';
 import cls from 'classnames';
+import {getYoutubeVideoById} from '@/lib/videos';
 Modal.setAppElement('#__next');
 
 export async function getStaticProps() {
-    const video = {
-        title: 'Cute dog',
-        publishTime: '1990-04-04',
-        description:
-            'a big red dog that is super cute.a big red dog that is super cute.a big red dog that is super cute.a big red dog that is super cute.a big red dog that is super cute.a big red dog that is super cute.a big red dog that is super cute.a big red dog that is super cute.a big red dog that is super cute.a big red dog that is super cute.a big red dog that is super cute.a big red dog that is super cute.a big red dog that is super cute.a big red dog that is super cute.a big red dog that is super cute.a big red dog that is super cute.a big red dog that is super cute.a big red dog that is super cute.a big red dog that is super cute.a big red dog that is super cute.a big red dog that is super cute.a big red dog that is super cute.a big red dog that is super cute.a big red dog that is super cute.a big red dog that is super cute.a big red dog that is super cute.a big red dog that is super cute.a big red dog that is super cute.a big red dog that is super cute.',
-        channelTitle: 'Paramount pictures',
-        viewCount: 10000,
-    };
+    const videoId = 'mYfJxlgR2jw';
+    const videoArr = await getYoutubeVideoById(videoId);
 
     return {
         props: {
-            video,
+            video: videoArr.length > 0 ? videoArr[0] : {},
         },
         revalidate: 10,
     };
@@ -35,7 +30,13 @@ export async function getStaticPaths() {
 const Video = ({video}) => {
     const router = useRouter();
 
-    const {title, publishTime, description, channelTitle, viewCount} = video;
+    const {
+        title,
+        publishTime,
+        description,
+        channelTitle,
+        statistics: {viewCount},
+    } = video;
     return (
         <div className={styles.container}>
             <Modal
