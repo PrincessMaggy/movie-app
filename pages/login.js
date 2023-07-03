@@ -1,24 +1,51 @@
 import Head from 'next/head';
-import {useState} from 'react';
+import {useState, useEffect} from 'react';
 import {useRouter} from 'next/router';
 import styles from '../styles/Login.module.css';
+import {magic} from '../lib/magicClient';
+import {toast} from 'react-toastify';
 
 const Login = () => {
     const router = useRouter();
+    useEffect(() => {
+        const handleComplete = () => {
+            setLoading(false);
+        };
+        router.events.on('routeChangeComplete', handleComplete);
+        router.events.on('routeChangeError', handleComplete);
+
+        return () => {
+            router.events.off('routeChangeComplete', handleComplete);
+            router.events.off('routeChangeError', handleComplete);
+        };
+    }, [router]);
+
     const [userMsg, setUserMsg] = useState('');
     const [email, setEmail] = useState('');
+    const [loading, setLoading] = useState(false);
     const handleOnChangeEmail = (e) => {
         setEmail(e.target.value);
-        console.log(email);
         setUserMsg('');
     };
-    const handleLoginWithEmail = (e) => {
+    const handleLoginWithEmail = async (e) => {
         e.preventDefault();
-        console.log(email);
-
         if (email) {
-            setUserMsg('');
-            router.push('/');
+            setLoading(true);
+
+            try {
+                const didToken = await magic.auth.loginWithMagicLink({
+                    email,
+                });
+                if (didToken) {
+                    // setLoading(false);
+                    toast.success('Successful login!');
+                    setUserMsg('');
+                    router.push('/');
+                }
+            } catch (e) {
+                toast.error(`Login unsuccessful! ,${e}`);
+                setLoading(false);
+            }
         } else {
             setUserMsg('Enter a valid email address');
         }
@@ -55,7 +82,7 @@ const Login = () => {
                         className={styles.loginBtn}
                         onClick={handleLoginWithEmail}
                     >
-                        SIgn In
+                        {loading ? 'Loading' : 'Sign In'}
                     </button>
                 </div>
             </main>
