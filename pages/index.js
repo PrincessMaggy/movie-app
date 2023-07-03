@@ -32,8 +32,6 @@ export default function Home({
     travelVideos,
     productivityVideos,
 }) {
-    console.log({magic});
-
     return (
         <>
             <Head>

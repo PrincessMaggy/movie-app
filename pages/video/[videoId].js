@@ -4,9 +4,7 @@ import Modal from 'react-modal';
 import cls from 'classnames';
 Modal.setAppElement('#__next');
 
-const Video = () => {
-    const router = useRouter();
-
+export async function getStaticProps() {
     const video = {
         title: 'Cute dog',
         publishTime: '1990-04-04',
@@ -15,6 +13,28 @@ const Video = () => {
         channelTitle: 'Paramount pictures',
         viewCount: 10000,
     };
+
+    return {
+        props: {
+            video,
+        },
+        revalidate: 10,
+    };
+}
+
+export async function getStaticPaths() {
+    const listOfVideos = ['mYfJxlgR2jw', '4zH5iYM4wJo', 'KCPEHsAViiQ'];
+
+    const paths = listOfVideos.map((videoId) => ({
+        params: {videoId},
+    }));
+
+    return {paths, fallback: 'blocking'};
+}
+
+const Video = ({video}) => {
+    const router = useRouter();
+
     const {title, publishTime, description, channelTitle, viewCount} = video;
     return (
         <div className={styles.container}>
