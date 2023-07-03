@@ -82,7 +82,7 @@ const Login = () => {
                         className={styles.loginBtn}
                         onClick={handleLoginWithEmail}
                     >
-                        {loading ? 'Loading' : 'Sign In'}
+                        {loading ? 'Loading...' : 'Sign In'}
                     </button>
                 </div>
             </main>
