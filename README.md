@@ -33,6 +33,7 @@ https://developers.google.com/youtube/v3/docs/search/list?apix_params=%7B%22part
 - Framer motion
 - Classnames
 - Magic link for auth and login
+- React Modal
 
 ### What I learned
 - ...
