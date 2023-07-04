@@ -10,7 +10,7 @@ const SectionCards = (props) => {
             <div className={styles.cardWrapper}>
                 {videos.map((video, index) => {
                     return (
-                        <Link href={`/video/${video.id}`}>
+                        <Link legacyBehavior href={`/video/${video.id}`}>
                             <a>
                                 <Card
                                     id={index}

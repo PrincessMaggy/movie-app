@@ -15,21 +15,21 @@ export default function App({Component, pageProps}) {
                 router.push('/login');
             }
         };
-        // checkLoggedInUser();
+        checkLoggedInUser();
     }, []);
 
-    // useEffect(() => {
-    //     const handleComplete = () => {
-    //         setIsLoading(false);
-    //     };
-    //     router.events.on('routeChangeComplete', handleComplete);
-    //     router.events.on('routeChangeError', handleComplete);
+    useEffect(() => {
+        const handleComplete = () => {
+            setIsLoading(false);
+        };
+        router.events.on('routeChangeComplete', handleComplete);
+        router.events.on('routeChangeError', handleComplete);
 
-    //     return () => {
-    //         router.events.off('routeChangeComplete', handleComplete);
-    //         router.events.off('routeChangeError', handleComplete);
-    //     };
-    // }, [router]);
+        return () => {
+            router.events.off('routeChangeComplete', handleComplete);
+            router.events.off('routeChangeError', handleComplete);
+        };
+    }, [router]);
 
     return isLoading ? <Loading /> : <Component {...pageProps} />;
 }
