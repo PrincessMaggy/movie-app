@@ -4,6 +4,7 @@ import Modal from 'react-modal';
 import cls from 'classnames';
 import {getYoutubeVideoById} from '@/lib/videos';
 import Head from 'next/head';
+import NavBar from '@/components/navbar/navbar';
 Modal.setAppElement('#__next');
 
 export async function getStaticProps(context) {
@@ -46,6 +47,7 @@ const Video = ({video}) => {
                 />
                 <link rel='icon' href='/favicon.ico' />
             </Head>
+            <NavBar />
             <div className={styles.container}>
                 <Modal
                     className={styles.modal}
