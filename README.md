@@ -14,7 +14,7 @@
 This is a cloned version of netflix application.
 ### Screenshot
 
-![screenshot](./screenshot.JPG)
+![screenshot](./SCREENSHOT.PNG)
 
 ### Links
 - Youtube API dashboard :[https://console.cloud.google.com/apis/dashboard?project=watchflix-391307]
