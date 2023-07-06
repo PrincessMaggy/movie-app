@@ -65,12 +65,12 @@ const NavBar = () => {
                     <li className={styles.navItem} onClick={handleOnClickHome}>
                         Home
                     </li>
-                    <li
+                    {/* <li
                         className={styles.navItem}
                         onClick={handleonClickMyList}
                     >
                         My list
-                    </li>
+                    </li> */}
                 </ul>
                 <nav className={styles.navContainer}>
                     <div>
